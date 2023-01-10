@@ -16,20 +16,22 @@ This project is about programming a function that returns a line read from a fil
 
 - Normal variables get destroyed once they go out of scope. But when static variables are initialized, they get destroyed only after the whole program gets executed.
 
-            
-          #include<stdio.h>
-          
-          int fun()
-          {
-            static int count = 0;
-            count++;
-            return count;
-          }
 
-          int main()
-          {
-            printf("%d ", fun());
-            printf("%d ", fun());
-            return 0;
-            //program prints “1 2” 
-          }
+            void Func() {
+              static int x = 0;
+              // |x| is initialized only once across five calls of |Func| and the variable
+              // will get incremented five times after these calls. The final value of |x|
+              // will be 5.
+              x++;
+              printf("%d\n", x);  // outputs the value of |x|
+            }
+
+            int main() {
+              Func();  // prints 1
+              Func();  // prints 2
+              Func();  // prints 3
+              Func();  // prints 4
+              Func();  // prints 5
+
+              return 0;
+            }
