@@ -5,6 +5,9 @@ This project is about programming a function that returns a line read from a fil
 
 ### Static Variables
 
+            static int variable_name; // declaring static integer value with name variable_name
+
+
 Static variables are the variables which once declared, get destroyed only when the program has completed its execution. 
 
 They have the property of retaining their previous scope value if they are already declared once in the program. 
