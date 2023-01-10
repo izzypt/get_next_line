@@ -5,9 +5,14 @@ This project is about programming a function that returns a line read from a fil
 
 ### Static Variables
 
-Static variables have a property of preserving their value even after they are out of their scope! Hence, static variables preserve their previous value in their previous scope and are not initialized again in the new scope. 
+Static variables are the variables which once declared, get destroyed only when the program has completed its execution. 
 
--  A static int variable remains in memory while the program is running. A normal or auto variable is destroyed when a function call where the variable was declared is over. For example, we can use static int to count a number of times a function is called, but an auto variable can’t be used for this purpose.
+They have the property of retaining their previous scope value if they are already declared once in the program. 
+
+They are different from normal variables because normal variables do not retain their previous value. 
+
+Normal variables get destroyed once they go out of scope. But when static variables are initialized, they get destroyed only after the whole program gets executed.
+
             
           #include<stdio.h>
           
