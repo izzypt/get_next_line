@@ -40,9 +40,10 @@ This project is about programming a function that returns a line read from a fil
 
 The read() function is a system call in the C standard library that reads data from a file descriptor. It takes three arguments:
 
-The file descriptor of the file to read from
-A pointer to a buffer that will hold the data that's read
-The number of bytes to read
+- The file descriptor of the file to read from
+- A pointer to a buffer that will hold the data that's read
+- The number of bytes to read
+
 It returns the number of bytes that were actually read. If an error occurs, -1 is returned and the global variable errno is set to indicate the error.
 
 When you call the read() function, the system checks the file descriptor to see which file it corresponds to and reads that number of bytes from the file into the buffer. The position in the file from where the data will be read is determined by the file offset. This means that the next time you call read(), it will continue reading from the file from the point where it left off.
