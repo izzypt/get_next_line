@@ -6,7 +6,7 @@
 /*   By: simao <simao@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:18:56 by simao             #+#    #+#             */
-/*   Updated: 2023/01/12 12:23:30 by simao            ###   ########.fr       */
+/*   Updated: 2023/01/14 20:32:16 by simao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 20
+#  define BUFFER_SIZE 55
 # endif
 
-# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h> 
 # include <unistd.h>
+# include <stdlib.h>
 
 char	*get_next_line(int fd);
+char	*handle_line(char *buffer, int line_size);
 
 #endif
