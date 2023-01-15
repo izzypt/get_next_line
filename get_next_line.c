@@ -6,7 +6,7 @@
 /*   By: simao <simao@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:25:52 by smagalha          #+#    #+#             */
-/*   Updated: 2023/01/15 12:08:27 by simao            ###   ########.fr       */
+/*   Updated: 2023/01/15 13:53:17 by simao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,42 @@ int	ft_strlcpy(char *dst, const char *src, int dstsize)
 	return (len_src);
 }
 
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char	*p;
+	unsigned char	*d;
+
+	if (!dest && !src)
+		return (NULL);
+	p = (unsigned char *) src;
+	d = (unsigned char *) dest;
+	while (n > 0)
+	{
+		*d = *p;
+		p++;
+		d++;
+		n--;
+	}
+	return (dest);
+}
+
+char	*ft_strjoin(char const *prefix, char const *suffix)
+{
+	size_t	len_prefix;
+	size_t	len_suffix;
+	char	*buffer;
+
+	len_prefix = ft_strlen(prefix);
+	len_suffix = ft_strlen(suffix);
+	buffer = (char *)malloc(len_prefix + len_suffix + 1);
+	if (!buffer)
+		return (NULL);
+	ft_memcpy(buffer, (const void *)prefix, len_prefix);
+	ft_memcpy(&buffer[len_prefix], (const void *)suffix, len_suffix);
+	buffer[len_prefix + len_suffix] = '\0';
+	return ((char *)buffer);
+}
+
 char	*handle_line(char *buffer, int line_size)
 {
 	static char	*stash;
@@ -70,12 +106,27 @@ char	*handle_line(char *buffer, int line_size)
 	return (line);
 }
 
+char	*save_text(char	*text)
+{
+	static char	*temp;
+	static char	line;
+	int			counter;
+
+	counter = 0;
+	temp = malloc(sizeof(char) * ft_strlen(text));
+	if (temp)
+		ft_strjoin(temp, text);
+	return (temp);
+}
+
 char	*get_next_line(int fd)
 {
 	char			*buffer;
 	int				i;
+	int				flag;
 
 	i = 0;
+	flag = 0;
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (0);
@@ -83,10 +134,14 @@ char	*get_next_line(int fd)
 	while (buffer[i])
 	{
 		if (buffer[i] == '\n')
+		{
+			flag = 1;
 			return (handle_line(buffer, i));
+		}
 		i++;
 	}
-	return (buffer);
+	if (flag == 0)
+		return (save_text(buffer));
 }
 
 void	main(void)

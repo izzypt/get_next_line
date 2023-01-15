@@ -6,7 +6,7 @@
 /*   By: simao <simao@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:18:56 by simao             #+#    #+#             */
-/*   Updated: 2023/01/14 20:32:16 by simao            ###   ########.fr       */
+/*   Updated: 2023/01/15 12:46:43 by simao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 55
+#  define BUFFER_SIZE 3
 # endif
 
 # include <stdio.h>
