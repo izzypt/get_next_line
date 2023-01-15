@@ -6,7 +6,7 @@
 /*   By: simao <simao@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:25:52 by smagalha          #+#    #+#             */
-/*   Updated: 2023/01/14 20:36:16 by simao            ###   ########.fr       */
+/*   Updated: 2023/01/15 12:08:27 by simao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,18 @@ int	ft_strlcpy(char *dst, const char *src, int dstsize)
 char	*handle_line(char *buffer, int line_size)
 {
 	static char	*stash;
-	static char	*line;
+	char		*line;
 	int			counter;
 	int			counter2;
 
 	counter = 0;
 	counter2 = 0;
+	line = malloc(sizeof(char) * line_size);
 	if (stash)
 	{
 		line = malloc((sizeof(char) * line_size) + ft_strlen(stash));
 		counter2 = ft_strlcpy(line, stash, ft_strlen(stash) + 1);
 	}
-	else
-		line = malloc(sizeof(char) * line_size);
 	while (counter <= line_size)
 		line[counter2++] = buffer[counter++];
 	if (BUFFER_SIZE > line_size)
