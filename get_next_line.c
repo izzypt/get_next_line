@@ -6,7 +6,7 @@
 /*   By: simao <simao@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:25:52 by smagalha          #+#    #+#             */
-/*   Updated: 2023/01/15 13:53:17 by simao            ###   ########.fr       */
+/*   Updated: 2023/01/15 17:33:46 by simao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,7 @@ char	*save_text(char	*text)
 
 	counter = 0;
 	temp = malloc(sizeof(char) * ft_strlen(text));
-	if (temp)
-		ft_strjoin(temp, text);
+	ft_memcpy(temp, text, ft_strlen(text));
 	return (temp);
 }
 
@@ -149,8 +148,6 @@ void	main(void)
 	int		fd;
 
 	fd = open("poema.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 }
