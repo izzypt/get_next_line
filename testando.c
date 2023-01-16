@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   testando.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simao <simao@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:25:52 by smagalha          #+#    #+#             */
-/*   Updated: 2023/01/15 21:52:03 by simao            ###   ########.fr       */
+/*   Updated: 2023/01/16 00:07:25 by simao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,34 @@ int	ft_strlen(const char *s)
 		counter++;
 
 	return (counter);
+}
+
+int	new_line(char *buffer)
+{
+	int	i;
+
+	i = 0;
+	while (buffer[i])
+	{
+		if (buffer[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	new_line_pos(char *buffer)
+{
+	int	i;
+
+	i = 0;
+	while (buffer[i])
+	{
+		if (buffer[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
 int	ft_strlcpy(char *dst, const char *src, int dstsize)
@@ -78,70 +106,48 @@ char	*ft_strjoin(char const *prefix, char const *suffix)
 	return ((char *)buffer);
 }
 
-char	*handle_line(char *buffer, int line_size)
+char	*handle_line(char *buffer, int nl_pos)
 {
-	static char	*stash;
-	char		*line;
-	int			counter;
-	int			counter2;
+	char	*stash;
+	char	*line;
+	int		counter;
+	int		counter2;
 
 	counter = 0;
 	counter2 = 0;
-	line = malloc(sizeof(char) * line_size);
+	line = malloc(sizeof(char) * nl_pos);
 	if (stash)
 	{
-		line = malloc((sizeof(char) * line_size) + ft_strlen(stash));
-		counter2 = ft_strlcpy(line, stash, ft_strlen(stash) + 1);
+		free(line);
+		line = malloc(sizeof(char) * (strlen(stash) + strlen(nl_pos)));
 	}
-	while (counter <= line_size)
-		line[counter2++] = buffer[counter++];
-	if (BUFFER_SIZE > line_size)
+	while (buffer <= nl_pos)
 	{
-		stash = malloc(sizeof(char) * BUFFER_SIZE - line_size);
-		counter2 = 0;
-		while (buffer[counter])
+		line[counter] = buffer[counter];
+		counter++;
+	}
+	if (BUFFER_SIZE - nl_pos > 0)
+	{
+		stash = malloc(sizeof(char) * BUFFER_SIZE - nl_pos);
+		while (buffer[counter] != '\n' || buffer[counter])
 			stash[counter2++] = buffer[counter++];
 	}
+	free(buffer);
 	return (line);
-}
-
-char	*save_text(char	*text, char *stash)
-{
-	static char	*temp;
-	int			counter;
-
-	counter = 0;
-	temp = malloc(sizeof(char) * ft_strlen(text));
-	ft_memcpy(temp, text, ft_strlen(text));
-	return (ft_strjoin(stash, temp));
 }
 
 char	*get_next_line(int fd)
 {
-	char			*buffer;
-	int				i;
-	int				flag;
-	static char		*stash;
+	char	*buffer;
+	char	*stash;
 
-	i = 0;
-	flag = 0;
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	stash = malloc(sizeof(char) * 1);
-	stash[0] = "/0";
-	if (!buffer)
-		return (0);
+	buffer = malloc(sizeof(char) * BUFFER_SIZE);
 	read(fd, buffer, BUFFER_SIZE);
-	while (buffer[i])
-	{
-		if (buffer[i] == '\n')
-		{
-			flag = 1;
-			return (handle_line(buffer, i));
-		}
-		i++;
-	}
-	if (flag == 0)
-		stash = save_text(buffer, stash);
+	if (new_line(buffer))
+		*handle_line(buffer, new_line_pos(buffer));
+	else
+		printf("there is no new line\n");
+	return (buffer);
 }
 
 void	main(void)
@@ -149,6 +155,8 @@ void	main(void)
 	int		fd;
 
 	fd = open("poema.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	//printf("%s", get_next_line(fd));
+	//printf("%s", get_next_line(fd));
+	get_next_line(fd);
+	get_next_line(fd);
 }
