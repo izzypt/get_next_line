@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simao <simao@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smagalha <smagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 12:18:56 by simao             #+#    #+#             */
-/*   Updated: 2023/01/15 19:47:21 by simao            ###   ########.fr       */
+/*   Created: 2023/01/12 19:16:39 by smagalha          #+#    #+#             */
+/*   Updated: 2023/01/16 19:16:36 by smagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 25
+#  define BUFFER_SIZE 55
 # endif
 
 # include <stdio.h>
@@ -23,6 +23,5 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
-char	*handle_line(char *buffer, int line_size);
 
 #endif
