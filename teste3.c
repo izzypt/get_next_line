@@ -159,7 +159,7 @@ char	*get_next_line(int fd)
 		if (char_read > 0)
 		     get_next_line(fd);
 		else
-            return (ft_strjoin(stash, buffer));
+            		return (ft_strjoin(stash, buffer));
 }
 
 int main()
