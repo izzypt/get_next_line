@@ -150,7 +150,7 @@ char	*get_next_line(int fd)
     	char_read = 1;
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (char_read > 0)
-        char_read = read(fd, buffer, BUFFER_SIZE);
+        	char_read = read(fd, buffer, BUFFER_SIZE);
 	stash = ft_strjoin(stash, buffer);
 	free(buffer);
 	if (new_line_in_stash(stash))
