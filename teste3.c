@@ -98,7 +98,7 @@ int	new_line_in_stash(char *stash)
 char *stash_leftovers(char *stash, int nl_pos)
 {
 	int		i;
-	char		*temp;
+	char	*temp;
 
 	i = 0;
 	temp = malloc(sizeof(char) * (ft_strlen(stash) - nl_pos + 1));
@@ -114,7 +114,7 @@ char *stash_leftovers(char *stash, int nl_pos)
 
 char *return_line_from_stash(char *stash)
 {
-	char		*line;
+	char	*line;
 	int		i;
 	int		toggle;
 
@@ -145,12 +145,12 @@ char	*get_next_line(int fd)
 {
 	char			*buffer;
 	char static		*stash;
-	int			char_read;
+	int				char_read;
 	
-    	char_read = 1;
+    char_read = 1;
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (char_read > 0)
-        	char_read = read(fd, buffer, BUFFER_SIZE);
+        char_read = read(fd, buffer, BUFFER_SIZE);
 	stash = ft_strjoin(stash, buffer);
 	free(buffer);
 	if (new_line_in_stash(stash))
@@ -159,7 +159,7 @@ char	*get_next_line(int fd)
 		if (char_read > 0)
 		     get_next_line(fd);
 		else
-            		return (ft_strjoin(stash, buffer));
+            return (ft_strjoin(stash, buffer));
 }
 
 int main()
@@ -167,19 +167,19 @@ int main()
     int fd;
     //char texto[20] = "Um quebra de linha\n";
 
-    fd = open("poema.txt", O_RDONLY);
+    fd = open("teste.txt", O_RDONLY);
     /*get_next_line(fd);
     get_next_line(fd);
     get_next_line(fd);
     get_next_line(fd);*/
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
     /*if (new_line_in_stash(texto))
         printf("tem quebra de linha");
     else
