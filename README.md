@@ -36,6 +36,18 @@ This project is about programming a function that returns a line read from a fil
               return 0;
             }
             
+
+    ###Here are some properties of the static variable in the C programming language.
+
+    1 - A static variable is destroyed only after the whole program gets executed. It does not depend on the scope of the function in which it is declared.
+    
+    2 - A static variable has a property to retain its value from its previous scope. This means that its value does not get re-initialized if the function in which it is declared gets called multiple times.
+    
+    3 - If no value is assigned to a static variable, by default, it takes the value 0.
+    
+    4 - The memory of the static variable is available throughout the program but its scope is only restricted to the block where it is declared. For example, if we declare a static variable inside a function, we cannot access this static variable from outside of this function.
+     
+       
 ### read()
 
 The read() function is a system call in the C standard library that reads data from a file descriptor. It takes three arguments:
