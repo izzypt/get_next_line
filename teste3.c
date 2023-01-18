@@ -20,7 +20,9 @@ size_t	ft_strlen(const char *s)
 	if (!s)
 		return (0);
 	while (s[counter])
+	{
 		counter++;
+	}
 	return (counter);
 }
 
@@ -114,7 +116,6 @@ char *return_line_from_stash(char *stash)
 {
 	char	*line;
 	int		i;
-	int		nl_pos;
 	int		toggle;
 
 	i = 0;
@@ -144,21 +145,21 @@ char	*get_next_line(int fd)
 {
 	char			*buffer;
 	char static		*stash;
-	int				chars_read;
-
+	int				char_read;
+	
+    char_read = 1;
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	chars_read = read(fd, buffer, BUFFER_SIZE);
+	if (char_read > 0)
+        char_read = read(fd, buffer, BUFFER_SIZE);
 	stash = ft_strjoin(stash, buffer);
 	free(buffer);
-	if (BUFFER_SIZE < 1 || read(fd, buffer, 0) == -1)
-	{
-		free(stash);
-		return (0);
-	}
 	if (new_line_in_stash(stash))
 		return (return_line_from_stash(stash));
 	else
-		get_next_line(fd);
+		if (char_read > 0)
+		     get_next_line(fd);
+		else
+            return (ft_strjoin(stash, buffer));
 }
 
 int main()
@@ -166,19 +167,19 @@ int main()
     int fd;
     //char texto[20] = "Um quebra de linha\n";
 
-    fd = open("texto.txt", O_RDONLY);
+    fd = open("poema.txt", O_RDONLY);
     /*get_next_line(fd);
     get_next_line(fd);
     get_next_line(fd);
     get_next_line(fd);*/
-    printf("LINE: %s", get_next_line(fd));
-    printf("LINE: %s", get_next_line(fd));
-    printf("LINE: %s", get_next_line(fd));
-    printf("LINE: %s", get_next_line(fd));
-    printf("LINE: %s", get_next_line(fd));
-    printf("LINE: %s", get_next_line(fd));
-    printf("LINE: %s", get_next_line(fd));
-    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s\n", get_next_line(fd));
     /*if (new_line_in_stash(texto))
         printf("tem quebra de linha");
     else
