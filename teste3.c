@@ -152,6 +152,11 @@ char	*get_next_line(int fd)
 	chars_read = read(fd, buffer, BUFFER_SIZE);
 	stash = ft_strjoin(stash, buffer);
 	free(buffer);
+	if (BUFFER_SIZE < 1 || read(fd, buffer, 0) == -1)
+	{
+		free(stash);
+		return (0);
+	}
 	if (new_line_in_stash(stash))
 		return (return_line_from_stash(stash));
 	else
@@ -163,15 +168,19 @@ int main()
     int fd;
     //char texto[20] = "Um quebra de linha\n";
 
-    fd = open("teste.txt", O_RDONLY);
+    fd = open("texto.txt", O_RDONLY);
     /*get_next_line(fd);
     get_next_line(fd);
     get_next_line(fd);
     get_next_line(fd);*/
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
-    printf("LINE: %s\n", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
+    printf("LINE: %s", get_next_line(fd));
     /*if (new_line_in_stash(texto))
         printf("tem quebra de linha");
     else
