@@ -125,7 +125,7 @@ char *return_line_from_stash(char *stash)
 	{
 		if (stash[i] == '\n' && !toggle)
 		{
-			line = malloc(sizeof(char) * i);
+			line = malloc(sizeof(char) * i + 1);
 			toggle = 1;
 			i = 0;
 		}
@@ -133,9 +133,9 @@ char *return_line_from_stash(char *stash)
 			line[i] = stash[i];
 		if (stash[i] == '\n' && toggle)
 		{
-			if (stash[i + 1] != '\0')
-				stash_leftovers(stash, i + 1);
 			line[i] = stash[i];
+			line[i + 1] = '\0';
+			stash_leftovers(stash, i + 1);
 			return (line);
 		}
 		i++;
@@ -163,7 +163,7 @@ int main()
     int fd;
     //char texto[20] = "Um quebra de linha\n";
 
-    fd = open("poema.txt", O_RDONLY);
+    fd = open("teste.txt", O_RDONLY);
     /*get_next_line(fd);
     get_next_line(fd);
     get_next_line(fd);
