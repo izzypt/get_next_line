@@ -37,7 +37,7 @@ This project is about programming a function that returns a line read from a fil
             }
             
 
-    ###Here are some properties of the static variable in the C programming language.
+    ### Here are some properties of the static variable in the C programming language.
 
     1 - A static variable is destroyed only after the whole program gets executed. It does not depend on the scope of the function in which it is declared.
     
