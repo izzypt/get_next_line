@@ -98,7 +98,7 @@ int	new_line_in_stash(char *stash)
 char *stash_leftovers(char *stash, int nl_pos)
 {
 	int		i;
-	char	*temp;
+	char		*temp;
 
 	i = 0;
 	temp = malloc(sizeof(char) * (ft_strlen(stash) - nl_pos + 1));
@@ -114,7 +114,7 @@ char *stash_leftovers(char *stash, int nl_pos)
 
 char *return_line_from_stash(char *stash)
 {
-	char	*line;
+	char		*line;
 	int		i;
 	int		toggle;
 
@@ -145,9 +145,9 @@ char	*get_next_line(int fd)
 {
 	char			*buffer;
 	char static		*stash;
-	int				char_read;
+	int			char_read;
 	
-    char_read = 1;
+    	char_read = 1;
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (char_read > 0)
         char_read = read(fd, buffer, BUFFER_SIZE);
