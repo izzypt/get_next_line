@@ -91,7 +91,7 @@ int	new_line_in_stash(char *stash)
 char	*stash_leftovers(char *stash, int nl_pos)
 {
 	int		i;
-	char	temp;
+	char	*temp;
 
 	i = 0;
 	temp = malloc(sizeof(char) * (ft_strlen(stash) - nl_pos + 1));
@@ -102,6 +102,7 @@ char	*stash_leftovers(char *stash, int nl_pos)
 		nl_pos++;
 	}
 	ft_strlcpy(stash, temp, ft_strlen(temp) + 1);
+	free(temp);
 	return (stash);
 }
 
@@ -167,7 +168,7 @@ int main()
     int fd;
     //char texto[20] = "Um quebra de linha\n";
 
-    fd = open("texto.txt", O_RDONLY);
+    fd = open("poema.txt", O_RDONLY);
     /*get_next_line(fd);
     get_next_line(fd);*/
     printf("LINE: %s", get_next_line(fd));
