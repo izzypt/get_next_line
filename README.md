@@ -1,5 +1,5 @@
 # get_next_line
-This project is about programming a function that returns a line read from a file descriptor one line at a time for each time the function is called. 
+This project is about programming a function that returns a line from a file descriptor one line at a time for each time the function is called. 
 
 Our program should return only 1 line at a time regardless of the BUFFER_SIZE (from 1 to 9999)
 
